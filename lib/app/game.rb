@@ -5,20 +5,20 @@
 class Game
     attr_accessor :player1, :player2
 
+#Après l'initialisation d'une partie, on doit initialiser les instances player
     def initialize
         @player1 = Player.new(ask_name, "x")
         @player2 = Player.new(ask_name, "o")
         @game_board = Board.new
-
     end
 
-
-
+#On récupère le nom
     def ask_name
         puts "Salut, quel est ton nom ?"
         name = gets.chomp
     end
 
+#On propose de jouer à chaque tour
     def play_each_turn(player)
         puts "Hello #{player.name}, c'est à toi de jouer"
         ask_place(player)
@@ -112,6 +112,7 @@ class Game
   
     end
 
+#les condition/methode permettant de checker si le jeux continue (pas de victoire pas de match nul)
     def is_still_ongoing
         if @game_board.victory == false or @game_board.draw_game == false
             return true
@@ -126,6 +127,7 @@ class Game
       end  
   end
 
+#methode qui annonce la victoire d'un joueur
     def win_announcement(player)
         if @game_board.victory == true
             puts "Victoire, #{player.name}, tu as gagné"
@@ -135,6 +137,7 @@ class Game
 
     end
 
+#methode qui propose le reset
     def play_again
         puts "veux tu rejouer?"
         puts "oui ou non"

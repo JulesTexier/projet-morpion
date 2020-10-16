@@ -1,21 +1,11 @@
+#class qui permet de visualiser la feuille de jeux
+
 class Board
 
     attr_accessor :cases, :player
 
+#on initialise un premier array
     def initialize
-
-        # bc_1 = Boardcase.new(0, "1")
-        # bc_2 = Boardcase.new(2, "2")
-        # bc_3 = Boardcase.new(3, "3")
-        # bc_4 = Boardcase.new(4, "4")
-        # bc_5 = Boardcase.new(5, "5")
-        # bc_6 = Boardcase.new(6, "6")
-        # bc_7 = Boardcase.new(7, "7")
-        # bc_6 = Boardcase.new(8, "8")
-        # bc_7 = Boardcase.new(9, "9")
-
-
-
         @cases = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     end
 
@@ -35,26 +25,19 @@ class Board
         puts " " + " "*3 + " "*5 + "|" + " "*5 + "|" + " "*5
     end
 
-=begin
-    def get_player_choice(choice, player_mark, player)
-        self.setlayer.ask_choice(choice, player_mark, player)
-        on recupere ici
-    end
-=end
-
+#je récupère le choix de joueur
     def set_case_value(choix, symbol)
-
       @cases[choix] = symbol
-     
-     
     end
 
+#def qui permet de chechker si la case est jouable?
     def is_playable?(choix)
       return @cases[choix] == " " ? true : false
-
     end
 
+#def qui checke les conditions de victoire
     def victory
+      #horizontale
       if @cases[0] == @cases[1] && @cases[1] == @cases[2] && @cases[0] != " "
         return true
       elsif @cases[3] == @cases[4] && @cases[4] == @cases[5] && @cases[3] != " "
@@ -63,6 +46,7 @@ class Board
         return true
       end
 
+      #verticale
       if @cases[0] == @cases[3] && @cases[3] == @cases[6] && @cases[0] != " "
         return true
       elsif @cases[1] == @cases[4] && @cases[4] == @cases[7] && @cases[1] != " "
@@ -71,6 +55,7 @@ class Board
         return true
       end
 
+      #diagonale
       if @cases[0] == @cases[4] && @cases[4] == @cases[8] && @cases[0] != " "
         return true
       elsif @cases[2] == @cases[4] && @cases[4] == @cases[6] && @cases[2] != " "
@@ -80,29 +65,15 @@ class Board
       return false
     end
 
+    #retour à zero
     def reset
       @cases = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     end
 
+    #condition de match nul
     def draw_game
         if victory == false && @cases.each {|i| i == "x" || i == "o"}        
             return false
         end
     end
-
-
-
 end
-
-=begin
-class BordCase
-  attr_accessor :name, :value
-
-  def initialize(name, value)
-    @name = name.to_i
-    @value = value
-  end
-
-end
-
-=end
